@@ -1,0 +1,8 @@
+site_name: eugenechou/blog
+pages:
+- Home: index.md
+theme: 
+  name: material
+  palette:
+    primary: 'Teal'
+    accent: 'Teal'
