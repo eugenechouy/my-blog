@@ -4,6 +4,7 @@ pages:
 - modern cpp: 
   - 準備: prepare.md
   - Usability: usability.md
+- Laradock: laradock.md
 theme: 
   name: material
   palette:
