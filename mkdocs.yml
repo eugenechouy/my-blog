@@ -1,6 +1,9 @@
 site_name: eugenechou/blog
 pages:
 - Home: index.md
+- modern cpp: 
+  - 準備: prepare.md
+  - Usability: usability.md
 theme: 
   name: material
   palette:
