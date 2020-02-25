@@ -1,4 +1,4 @@
-在寫 Laravel 之前的環境設置非常繁瑣，而且最近也在找能夠輕鬆架好多個 laravel 專案的方法，所以就來試試 Laradock，由於有些雷所以還是記錄一下
+在寫 Laravel 之前的環境設置非常繁瑣，而且最近也在找能夠輕鬆架好多個 laravel 專案的方法，所以就來試試 Laradock，有些雷所以還是記錄一下
 
 ```
 git clone https://github.com/Laradock/laradock.git
