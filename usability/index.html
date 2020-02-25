@@ -31,18 +31,18 @@
       
         <meta name="lang:search.tokenizer" content="[\s\-]+">
       
-      <link rel="shortcut icon" href="assets/images/favicon.png">
+      <link rel="shortcut icon" href="../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-4.6.0">
     
     
       
-        <title>eugenechou/blog</title>
+        <title>Usability - eugenechou/blog</title>
       
     
     
-      <link rel="stylesheet" href="assets/stylesheets/application.1b62728e.css">
+      <link rel="stylesheet" href="../assets/stylesheets/application.1b62728e.css">
       
-        <link rel="stylesheet" href="assets/stylesheets/application-palette.a8b3c06d.css">
+        <link rel="stylesheet" href="../assets/stylesheets/application-palette.a8b3c06d.css">
       
       
         
@@ -51,7 +51,7 @@
       
     
     
-      <script src="assets/javascripts/modernizr.268332fc.js"></script>
+      <script src="../assets/javascripts/modernizr.268332fc.js"></script>
     
     
       
@@ -60,7 +60,7 @@
         <style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
       
     
-    <link rel="stylesheet" href="assets/fonts/material-icons.css">
+    <link rel="stylesheet" href="../assets/fonts/material-icons.css">
     
     
     
@@ -83,7 +83,7 @@
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
     <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
     
-      <a href="#hi" tabindex="1" class="md-skip">
+      <a href="#constant" tabindex="1" class="md-skip">
         Skip to content
       </a>
     
@@ -92,7 +92,7 @@
   <nav class="md-header-nav md-grid">
     <div class="md-flex">
       <div class="md-flex__cell md-flex__cell--shrink">
-        <a href="." title="eugenechou/blog" class="md-header-nav__button md-logo">
+        <a href=".." title="eugenechou/blog" class="md-header-nav__button md-logo">
           
             <i class="md-icon"></i>
           
@@ -109,7 +109,7 @@
             </span>
             <span class="md-header-nav__topic">
               
-                Home
+                Usability
               
             </span>
           
@@ -162,7 +162,7 @@
                   <div class="md-sidebar__inner">
                     <nav class="md-nav md-nav--primary" data-md-level="0">
   <label class="md-nav__title md-nav__title--site" for="__drawer">
-    <a href="." title="eugenechou/blog" class="md-nav__button md-logo">
+    <a href=".." title="eugenechou/blog" class="md-nav__button md-logo">
       
         <i class="md-icon"></i>
       
@@ -176,20 +176,11 @@
       
       
 
-  
 
-
-  <li class="md-nav__item md-nav__item--active">
-    
-    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-    
-      
-    
-    
-    <a href="." title="Home" class="md-nav__link md-nav__link--active">
+  <li class="md-nav__item">
+    <a href=".." title="Home" class="md-nav__link">
       Home
     </a>
-    
   </li>
 
     
@@ -197,10 +188,12 @@
       
       
 
+  
 
-  <li class="md-nav__item md-nav__item--nested">
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2">
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2" checked>
     
     <label class="md-nav__link" for="nav-2">
       modern cpp
@@ -218,7 +211,7 @@
 
 
   <li class="md-nav__item">
-    <a href="prepare/" title="準備" class="md-nav__link">
+    <a href="../prepare/" title="準備" class="md-nav__link">
       準備
     </a>
   </li>
@@ -228,11 +221,85 @@
           
           
 
+  
 
-  <li class="md-nav__item">
-    <a href="usability/" title="Usability" class="md-nav__link">
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Usability
+      </label>
+    
+    <a href="./" title="Usability" class="md-nav__link md-nav__link--active">
       Usability
     </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#constant" class="md-nav__link">
+    Constant
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#nullptr" class="md-nav__link">
+    nullptr
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#constexpr" class="md-nav__link">
+    constexpr
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#variables-and-initialization" class="md-nav__link">
+    Variables and initialization
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#declare-variable-in-ifswitch" class="md-nav__link">
+    declare variable in if/switch
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+    
   </li>
 
         
@@ -255,8 +322,62 @@
 <nav class="md-nav md-nav--secondary">
   
   
-    
   
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#constant" class="md-nav__link">
+    Constant
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#nullptr" class="md-nav__link">
+    nullptr
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#constexpr" class="md-nav__link">
+    constexpr
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#variables-and-initialization" class="md-nav__link">
+    Variables and initialization
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#declare-variable-in-ifswitch" class="md-nav__link">
+    declare variable in if/switch
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
   
 </nav>
                   </div>
@@ -269,7 +390,81 @@
               
                 
                 
-                <h1 id="hi">Hi</h1>
+                  <h1>Usability</h1>
+                
+                <h2 id="constant">Constant</h2>
+<h3 id="nullptr">nullptr</h3>
+<p>傳統 C++ 把 <code>NULL</code> 當成 <code>0</code> 或是 <code>(void*)0</code>，這可能會發生幾個問題</p>
+<ol>
+<li><code>NULL</code> = <code>(void*)0</code>: C++ 不允許將 <code>(void*)</code> 轉換為其他型態，所以以下的程式會有問題</li>
+</ol>
+<pre><code>char *str = NULL;
+</code></pre>
+
+<ol>
+<li><code>NULL</code> = <code>0</code>: 雖然說將 NULL 定義成 0 可以解決上述問題，但是使用 overloading 時 </li>
+</ol>
+<pre><code>void foo(char*);
+void foo(int);
+</code></pre>
+
+<p><code>foo(NULL)</code> 會選擇 <code>void foo(int)</code>，因為通常我們使用 NULL 都是要傳給指標，結果卻是呼叫參數 <code>int</code>，十分不直觀</p>
+<p>為了解決這些問題，C++11 印入了 <strong>nullptr</strong>，其型態為 <strong>nullptr_t</strong>，可以轉換成任何型態的指標</p>
+<pre><code>foo(0);       // call foo(int)
+foo(NULL);    // error
+foo(nullptr); // call foo(char*)
+</code></pre>
+
+<h3 id="constexpr">constexpr</h3>
+<p>在 C++ 中宣告陣列時只能使用 constant expression 來指定陣列大小，即使是 const 變數也是非法的</p>
+<pre><code>int len = 10;
+int arr[len]; //illegal
+
+const in len2 = 10;
+int arr2[len2]; //illegal
+</code></pre>
+
+<p>不過大家一定都用過上述第二種方法來指定陣列大小，而且 compiler 也都沒有噴過錯，那是因為大多數 compiler 都有優化，使得一些不合法的寫法也可以被接受</p>
+<p>在 C++ 11 之前編譯器無法明確知道該變數或是函數回傳值就是個常量，所以在 C++11 中引入 constexpr 這個關鍵字告訴編譯器應該去驗證該變數或是函數回傳值在編譯期就是一個 constant expression，以下都是合法的</p>
+<pre><code>constexpr int len_foo_constexpr() {
+    return 5;
+}
+
+...
+
+constexpr int len = 10;
+int arr[len];
+
+constexpr int len2 = 1 + 2 + 3;
+int arr2[len2];
+
+int arr3[len_foo_constexpr()];
+...
+
+</code></pre>
+
+<p>constexpr 的函數也可以用於遞迴</p>
+<pre><code>constexpr int fibonacci(const int n) {
+    return n == 1 || n == 2 ? 1 : fibonacci(n-1) + fibonacci(n-2);
+}
+</code></pre>
+
+<h2 id="variables-and-initialization">Variables and initialization</h2>
+<h3 id="declare-variable-in-ifswitch">declare variable in if/switch</h3>
+<p>在 C++17 之前如果我們要找到 vector 中的特定值並修改他</p>
+<pre><code>const std::vector&lt;int&gt;::iterator itr = std::find(vec.begin(), vec.end(), 2);
+if (itr != vec.end()) 
+    *itr = 3;
+</code></pre>
+
+<p>這個地方的 <code>itr</code> 只是個暫時記錄用的變數，跟你寫 <code>for</code> 時裡面會用到的 <code>i</code>一樣，當你已經像上述宣告過 <code>itr</code>，<code>for</code> 迴圈的變數名稱就只能換一個用，在 C++17 後我們可以在 <code>if</code> 中宣告變數，讓開發者可以免去這種小煩惱</p>
+<pre><code>if (const std::vector&lt;int&gt;::iterator itr = std::find(vec.begin(), vec.end(), 3);
+    itr != vec.end()) 
+    *itr = 4;
+</code></pre>
+
+<hr />
+<p>持續更新中...</p>
                 
                   
                 
@@ -291,20 +486,20 @@
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid">
         
-        
-          <a href="prepare/" title="準備" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../prepare/" title="準備" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
             <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
               <span class="md-flex__ellipsis">
                 <span class="md-footer-nav__direction">
-                  Next
+                  Previous
                 </span>
                 準備
               </span>
             </div>
-            <div class="md-flex__cell md-flex__cell--shrink">
-              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
-            </div>
           </a>
+        
         
       </nav>
     </div>
@@ -326,9 +521,9 @@
       
     </div>
     
-      <script src="assets/javascripts/application.808e90bb.js"></script>
+      <script src="../assets/javascripts/application.808e90bb.js"></script>
       
-      <script>app.initialize({version:"1.0.4",url:{base:"."}})</script>
+      <script>app.initialize({version:"1.0.4",url:{base:".."}})</script>
       
     
   </body>
