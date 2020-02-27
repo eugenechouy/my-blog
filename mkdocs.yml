@@ -1,11 +1,27 @@
+# project information
 site_name: eugenechou/blog
+site_author: eugene chou
+site_url: https://eugenechouy.github.io/my-blog/
+
+repo_name: eugenechouy/my-blog
+repo_url: https://github.com/eugenechouy/my-blog
+edit_uri: ""
+
 pages:
-- Home: index.md
-- modern cpp: 
-  - 準備: prepare.md
-  - Usability: usability.md
-- Laradock: laradock.md
+  - Home: index.md
+  - Linux Kernel:
+    - 準備: linux-kernel/prepare.md
+    - Project 1: linux-kernel/project-1.md
+    - Project 1 檢討: linux-kernel/project-1-check.md
+  - modern cpp: 
+    - 準備: modern-cpp/prepare.md
+    - Usability: modern-cpp/usability.md
+  - Laradock: laradock.md
+  
+
 theme: 
+  feature:
+    tabs: true
   name: material
   palette:
     primary: 'Teal'
