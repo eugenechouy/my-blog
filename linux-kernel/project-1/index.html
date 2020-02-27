@@ -1,0 +1,919 @@
+
+
+
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      
+      
+        <link rel="canonical" href="https://eugenechouy.github.io/my-blog/linux-kernel/project-1/">
+      
+      
+        <meta name="author" content="eugene chou">
+      
+      
+        <meta name="lang:clipboard.copy" content="Copy to clipboard">
+      
+        <meta name="lang:clipboard.copied" content="Copied to clipboard">
+      
+        <meta name="lang:search.language" content="en">
+      
+        <meta name="lang:search.pipeline.stopwords" content="True">
+      
+        <meta name="lang:search.pipeline.trimmer" content="True">
+      
+        <meta name="lang:search.result.none" content="No matching documents">
+      
+        <meta name="lang:search.result.one" content="1 matching document">
+      
+        <meta name="lang:search.result.other" content="# matching documents">
+      
+        <meta name="lang:search.tokenizer" content="[\s\-]+">
+      
+      <link rel="shortcut icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.1, mkdocs-material-4.6.3">
+    
+    
+      
+        <title>Project 1 - eugenechou/blog</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/application.adb8469c.css">
+      
+        <link rel="stylesheet" href="../../assets/stylesheets/application-palette.a8b3c06d.css">
+      
+      
+        
+        
+        <meta name="theme-color" content="#009688">
+      
+    
+    
+      <script src="../../assets/javascripts/modernizr.86422ebf.js"></script>
+    
+    
+      
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
+      
+    
+    <link rel="stylesheet" href="../../assets/fonts/material-icons.css">
+    
+    
+    
+      
+    
+    
+  </head>
+  
+    
+    
+    <body dir="ltr" data-md-color-primary="teal" data-md-color-accent="teal">
+  
+    <svg class="md-svg">
+      <defs>
+        
+        
+          <svg xmlns="http://www.w3.org/2000/svg" width="416" height="448" viewBox="0 0 416 448" id="__github"><path fill="currentColor" d="M160 304q0 10-3.125 20.5t-10.75 19T128 352t-18.125-8.5-10.75-19T96 304t3.125-20.5 10.75-19T128 256t18.125 8.5 10.75 19T160 304zm160 0q0 10-3.125 20.5t-10.75 19T288 352t-18.125-8.5-10.75-19T256 304t3.125-20.5 10.75-19T288 256t18.125 8.5 10.75 19T320 304zm40 0q0-30-17.25-51T296 232q-10.25 0-48.75 5.25Q229.5 240 208 240t-39.25-2.75Q130.75 232 120 232q-29.5 0-46.75 21T56 304q0 22 8 38.375t20.25 25.75 30.5 15 35 7.375 37.25 1.75h42q20.5 0 37.25-1.75t35-7.375 30.5-15 20.25-25.75T360 304zm56-44q0 51.75-15.25 82.75-9.5 19.25-26.375 33.25t-35.25 21.5-42.5 11.875-42.875 5.5T212 416q-19.5 0-35.5-.75t-36.875-3.125-38.125-7.5-34.25-12.875T37 371.5t-21.5-28.75Q0 312 0 260q0-59.25 34-99-6.75-20.5-6.75-42.5 0-29 12.75-54.5 27 0 47.5 9.875t47.25 30.875Q171.5 96 212 96q37 0 70 8 26.25-20.5 46.75-30.25T376 64q12.75 25.5 12.75 54.5 0 21.75-6.75 42 34 40 34 99.5z"/></svg>
+        
+      </defs>
+    </svg>
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
+    
+      <a href="#1-system-call-process-virtual-address-intervalscurrentmm_struct" tabindex="0" class="md-skip">
+        Skip to content
+      </a>
+    
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex">
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <a href="https://eugenechouy.github.io/my-blog/" title="eugenechou/blog" aria-label="eugenechou/blog" class="md-header-nav__button md-logo">
+          
+            <i class="md-icon"></i>
+          
+        </a>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
+          
+            <span class="md-header-nav__topic">
+              eugenechou/blog
+            </span>
+            <span class="md-header-nav__topic">
+              
+                Project 1
+              
+            </span>
+          
+        </div>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        
+          <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
+          
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" aria-label="search" name="query" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active">
+      <label class="md-icon md-search__icon" for="__search"></label>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
+        &#xE5CD;
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result">
+          <div class="md-search-result__meta">
+            Type to start searching
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+        
+      </div>
+      
+        <div class="md-flex__cell md-flex__cell--shrink">
+          <div class="md-header-nav__source">
+            
+
+
+  
+
+<a href="https://github.com/eugenechouy/my-blog" title="Go to repository" class="md-source" data-md-source="github">
+  
+    <div class="md-source__icon">
+      <svg viewBox="0 0 24 24" width="24" height="24">
+        <use xlink:href="#__github" width="24" height="24"></use>
+      </svg>
+    </div>
+  
+  <div class="md-source__repository">
+    eugenechouy/my-blog
+  </div>
+</a>
+          </div>
+        </div>
+      
+    </div>
+  </nav>
+</header>
+    
+    <div class="md-container">
+      
+        
+      
+      
+        
+
+  
+
+<nav class="md-tabs md-tabs--active" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  <li class="md-tabs__item">
+    
+      <a href="../.." class="md-tabs__link">
+        Home
+      </a>
+    
+  </li>
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../prepare/" class="md-tabs__link md-tabs__link--active">
+          Linux Kernel
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../modern-cpp/prepare/" class="md-tabs__link">
+          modern cpp
+        </a>
+      
+    </li>
+  
+
+      
+        
+      
+    </ul>
+  </div>
+</nav>
+      
+      <main class="md-main" role="main">
+        <div class="md-main__inner md-grid" data-md-component="container">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" data-md-level="0">
+  <label class="md-nav__title md-nav__title--site" for="__drawer">
+    <a href="https://eugenechouy.github.io/my-blog/" title="eugenechou/blog" class="md-nav__button md-logo">
+      
+        <i class="md-icon"></i>
+      
+    </a>
+    eugenechou/blog
+  </label>
+  
+    <div class="md-nav__source">
+      
+
+
+  
+
+<a href="https://github.com/eugenechouy/my-blog" title="Go to repository" class="md-source" data-md-source="github">
+  
+    <div class="md-source__icon">
+      <svg viewBox="0 0 24 24" width="24" height="24">
+        <use xlink:href="#__github" width="24" height="24"></use>
+      </svg>
+    </div>
+  
+  <div class="md-source__repository">
+    eugenechouy/my-blog
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../.." title="Home" class="md-nav__link">
+      Home
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2" checked>
+    
+    <label class="md-nav__link" for="nav-2">
+      Linux Kernel
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        Linux Kernel
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../prepare/" title="準備" class="md-nav__link">
+      準備
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Project 1
+      </label>
+    
+    <a href="./" title="Project 1" class="md-nav__link md-nav__link--active">
+      Project 1
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-system-call-process-virtual-address-intervalscurrentmm_struct" class="md-nav__link">
+    1. 我們要取得呼叫此 system call 的 process 的 virtual address intervals，而我們的目標就是去抓current裡面的mm_struct物件
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#linux-kernel-task_struct" class="md-nav__link">
+    Linux kernel 中進程用 task_struct 結構體表示
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-corresponding-physical-address-intervals" class="md-nav__link">
+    2. 再來我們要取得corresponding physical address intervals
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-system-callvirtual-addressphysical-address" class="md-nav__link">
+    3. 列出呼叫system call時有多少virtual address有對應的physical address（幾趴）
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-virtual-address-intervalsphysical-address-intervals" class="md-nav__link">
+    4. 印出哪些virtual address intervals對應到相同的physical address intervals
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../project-1-check/" title="Project 1 檢討" class="md-nav__link">
+      Project 1 檢討
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
+    
+    <label class="md-nav__link" for="nav-3">
+      modern cpp
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        modern cpp
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../modern-cpp/prepare/" title="準備" class="md-nav__link">
+      準備
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../modern-cpp/usability/" title="Usability" class="md-nav__link">
+      Usability
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../laradock/" title="Laradock" class="md-nav__link">
+      Laradock
+    </a>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary">
+  
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-system-call-process-virtual-address-intervalscurrentmm_struct" class="md-nav__link">
+    1. 我們要取得呼叫此 system call 的 process 的 virtual address intervals，而我們的目標就是去抓current裡面的mm_struct物件
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#linux-kernel-task_struct" class="md-nav__link">
+    Linux kernel 中進程用 task_struct 結構體表示
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-corresponding-physical-address-intervals" class="md-nav__link">
+    2. 再來我們要取得corresponding physical address intervals
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-system-callvirtual-addressphysical-address" class="md-nav__link">
+    3. 列出呼叫system call時有多少virtual address有對應的physical address（幾趴）
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-virtual-address-intervalsphysical-address-intervals" class="md-nav__link">
+    4. 印出哪些virtual address intervals對應到相同的physical address intervals
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                  <h1>Project 1</h1>
+                
+                <p>Add a new system call void linux_survey_TT(char *) to your Linux kernel so that you can call it in your program</p>
+<ol>
+<li>The system call has a parameter which specifies the address of a memory area that can store all information the system call collects in the kernel.</li>
+<li>The system call records the virtual address intervals consisting of the user address space of the process executing the system call.</li>
+<li>The system call records the corresponding physical address intervals used by the above virtual address intervals at the moment that you execute system call void linux_survey_TT().</li>
+</ol>
+<hr />
+<h3 id="1-system-call-process-virtual-address-intervalscurrentmm_struct">1. 我們要取得呼叫此 system call 的 process 的 virtual address intervals，而我們的目標就是去抓current裡面的mm_struct物件</h3>
+<h4 id="linux-kernel-task_struct">Linux kernel 中進程用 task_struct 結構體表示</h4>
+<p>進程主要由以下幾部分組成：</p>
+<ul>
+<li>代碼段：編譯後形成的一些指令</li>
+<li>數據段：程序運行時需要的數據<ul>
+<li>只讀數據段：常量</li>
+<li>已初始化數據段：全局變量，靜態變量</li>
+<li>未初始化數據段（bss)：未初始化的全局變量和靜態變量</li>
+</ul>
+</li>
+<li>堆棧段：程序運行時動態分配的一些內存</li>
+<li>PCB：進程信息，狀態標識等</li>
+</ul>
+<p><img alt="" src="https://i.imgur.com/c30RMFe.jpg" /></p>
+<pre><code>struct task_struct {
+   volatile long state; //进程状态
+   struct mm_struct *mm, *active_mm; //内存地址空间
+   pid_t pid;
+     pid_t tgid;
+
+   struct task_struct __rcu *real_parent; //真正的父进程，fork时记录的
+   struct task_struct __rcu *parent; // ptrace后，设置为trace当前进程的进程
+   struct list_head children;  //子进程
+     struct list_head sibling;  //父进程的子进程，即兄弟进程
+   struct task_struct *group_leader; //线程组的领头线程
+
+   char comm[TASK_COMM_LEN];  //进程名，长度上限为16字符
+   struct fs_struct *fs;  //文件系统信息
+   struct files_struct *files; // 打开的文件
+
+   struct signal_struct *signal;
+   struct sighand_struct *sighand;
+   struct sigpending pending;
+
+   void *stack;    // 指向内核栈的指针
+   ...
+}    
+</code></pre>
+
+<p>而其中mm_struct長這樣</p>
+<pre><code>struct mm_struct {
+    struct vm_area_struct * mmap;        /* list of VMAs */
+    struct rb_root mm_rb;
+    unsigned long mmap_base;        /* base of mmap area */
+    unsigned long task_size;        /* size of task vm space */
+    pgd_t * pgd;
+    atomic_t mm_count;            /* How many references to &quot;struct mm_struct&quot; (users count as 1) */
+    int map_count;                /* number of VMAs */
+
+    unsigned long start_code, end_code, start_data, end_data;
+    unsigned long start_brk, brk, start_stack;
+    unsigned long arg_start, arg_end, env_start, env_end;
+
+    struct file *exe_file;
+
+    /* ... some code omitted ... */
+};
+</code></pre>
+
+<p>其中有關virtual address intervals的資訊:</p>
+<pre><code>unsigned long start_code, end_code, start_data, end_data;
+unsigned long start_brk, brk, start_stack;
+unsigned long arg_start, arg_end, env_start, env_end;
+</code></pre>
+
+<p>這些變數存的是process memory layout中個區塊的起始, 結束位址，例如text segments就是start_code ~ end_code</p>
+<pre><code>struct vm_area_struct * mmap;
+</code></pre>
+
+<p>mmap紀錄進程使用到的VMA們
+其中vm_area_struct中比較重要的資料有</p>
+<pre><code>unsigned long vm_start：記錄此 VMA 區塊的開始位址
+unsigned long vm_end：記錄此 VMA 區塊的結束位址
+struct vm_area_struct *vm_next：指向下一個 VMA 區塊結構的指標
+</code></pre>
+
+<p>我猜所有VMA的位址就是process的virtual address intervals了吧!</p>
+<pre><code>void my_copy(char *result, unsigned long address, size_t length){
+    if(copy_to_user(result, &amp;address, length))
+        printk(&quot;error while copy_to_user\n&quot;);
+}
+
+while(mmap-&gt;vm_next != NULL){
+        my_copy(result, mmap-&gt;vm_start, length);
+        result += length;
+        my_copy(result, mmap-&gt;vm_end, length);
+        result += length;
+        mmap = mmap-&gt;vm_next;
+}
+my_copy(result, state_end, length);
+result += length;
+result += length;
+</code></pre>
+
+<p>這邊在做的事就是把每一個vma的vm_start和vm_end搬到result，搬過去之後再將result往後length(sizeof(unsigned long))個bytes
+由於我是每個兩個address為一組，所以最後state_end我也保留兩個變數的位址</p>
+<hr />
+<h3 id="2-corresponding-physical-address-intervals">2. 再來我們要取得corresponding physical address intervals</h3>
+<p>理解linux paging就很好找了</p>
+<pre><code>#include &lt;linux/kernel.h&gt;
+#include &lt;linux/sched.h&gt;
+#include &lt;asm/pgtable.h&gt;
+
+static unsigned long vaddr2paddr(unsigned long vaddr){
+        pgd_t *pgd;
+        pud_t *pud;
+        pmd_t *pmd;
+        pte_t *pte;
+        unsigned long paddr=0, page_addr=0, page_offset=0;
+
+        pgd = pgd_offset(current-&gt;mm, vaddr);
+        if (pgd_none(*pgd)) {
+            printk(&quot;not mapped in pgd\n&quot;);
+            return -1;
+        }
+        pud = pud_offset(pgd, vaddr);
+        if (pud_none(*pud)) {
+            printk(&quot;not mapped in pud\n&quot;);
+            return -1;
+        }
+        pmd = pmd_offset(pud, vaddr);
+        if (pmd_none(*pmd)) {
+            printk(&quot;not mapped in pmd\n&quot;);
+            return -1;
+        }
+        pte = pte_offset_kernel(pmd, vaddr);
+        if (pte_none(*pte)) {
+            printk(&quot;not mapped in pte\n&quot;);
+            return -1;
+        }
+
+        page_addr = pte_val(*pte) &amp; PAGE_MASK;
+        page_offset = vaddr &amp; ~PAGE_MASK;
+        paddr = page_addr | page_offset;
+        return paddr;
+}
+</code></pre>
+
+<p>透過pgd_offset, pud_offset, pmd_offset, pte_offset_kernel取得page table，再配合PAGE_MASK取得physical address，其中並不是每個virtual address都有分配到physical address，所以可能在取某級分頁時發生取不到的狀況，此時我們就可以判斷該virtual address沒有被分配到</p>
+<pre><code>mmap = mm-&gt;mmap;
+        while(mmap-&gt;vm_next != NULL){   
+                for(i=mmap-&gt;vm_start ; i&lt;=mmap-&gt;vm_end ; i+=(~PAGE_MASK)+1){
+                        unsigned long page_start = i, page_end = i+(~PAGE_MASK);
+                        unsigned long frame_start = vaddr2paddr(page_start), frame_end = vaddr2paddr(page_end);
+                        if(frame_start){
+                                my_copy(result, page_start, length);
+                                result += length;
+                                my_copy(result, page_end, length);
+                                result += length;
+                    my_copy(result, frame_start, length);
+                                result += length;
+                                my_copy(result, frame_end, length);
+                                result += length;
+            }
+                }
+                my_copy(result, vma_end, length);
+                result += length;
+                result += length;
+                result += length;
+                result += length;
+                mmap = mmap-&gt;vm_next;
+        } 
+    my_copy(result, state_end, length);
+    result += length;
+    result += length;
+        result += length;
+        result += length;
+
+</code></pre>
+
+<p>由於virtual address對到physical address是以page為單位，也就是說一塊page的起始位置有對應的physical address則代表整塊page都有，所以我就遞迴過每個vma中的每個page
+這邊我是以每四個資料為一組(page頭尾+frame頭尾)，雖然這麼多result+=length有點醜不過我懶得用其他方法了</p>
+<hr />
+<h3 id="3-system-callvirtual-addressphysical-address">3. 列出呼叫system call時有多少virtual address有對應的physical address（幾趴）</h3>
+<p>我這邊測試端按照剛剛的儲存方式抓出</p>
+<p>1 . virtual address intervals
+    這時可以順便計算virtual address總數</p>
+<pre><code>int virtual_cnt = 0, physical_cnt = 0;
+const int length = sizeof(unsigned long);
+for(int i=0 ; ; i++) {
+    unsigned long vm_start, vm_end;
+    memcpy(&amp;vm_start, result, length); next
+    memcpy(&amp;vm_end, result, length); next
+    if(vm_start == STATE_END)
+        break;
+    virtual_cnt += (vm_end - vm_start);
+    fprintf(pfile, &quot;vma%d: 0x%lx ~ 0x%lx\n&quot;, i+1, vm_start, vm_end);
+}
+</code></pre>
+
+<p>2 . physical address intervals 順便算出physical address總數</p>
+<pre><code>fprintf(pfile, &quot;physical address intervals: \n&quot;);
+for(int i=0 ; ; ){
+    unsigned long page_start, page_end, frame_start, frame_end;
+    memcpy(&amp;page_start, result, length); next
+    memcpy(&amp;page_end, result, length); next
+    memcpy(&amp;frame_start, result, length); next
+    memcpy(&amp;frame_end, result, length); next
+    if(page_start == STATE_END)
+        break;
+    if(page_start == VMA_END){
+        // fprintf(pfile, &quot;\n&quot;);
+        continue;
+    }
+    physical_cnt += MASK;
+    i++;
+    fprintf(pfile, &quot;0x%lx ~ 0x%lx -&gt; 0x%lx ~ 0x%lx\n&quot;, page_start, page_end, frame_start, frame_end);
+}   
+</code></pre>
+
+<p>其中我這邊把result+=length替換成next，還是沒多好看qq</p>
+<p>3 . 印出</p>
+<pre><code>printf(&quot;%s virtual addresses that have physical memory: %.2f% \n&quot;, filename, (double)physical_cnt/virtual_cnt*100);
+</code></pre>
+
+<hr />
+<h3 id="4-virtual-address-intervalsphysical-address-intervals">4. 印出哪些virtual address intervals對應到相同的physical address intervals</h3>
+<p>這裡就有點麻煩了，由於fork()後變成兩個process不能直接把資料存到變數中(child存的parent看不到)，所以必須要再讀檔案來分析，超麻煩啊啊啊啊啊啊啊</p>
+<ol>
+<li>先宣告一個struct來存我們要的資料</li>
+</ol>
+<pre><code>struct page{
+    unsigned long page_start;
+    unsigned long frame_start;
+};
+</code></pre>
+
+<ol>
+<li>讀檔後存在陣列中</li>
+</ol>
+<pre><code>void analyze_file(char *filename, struct page *pages){
+    FILE *pfile;
+    pfile = fopen(filename, &quot;r&quot;);
+    if(!pfile){
+        printf(&quot;open file error!\n&quot;);
+        return;
+    }
+    // 先抓掉前面的vma list
+    char useless[100];
+    while(fscanf(pfile, &quot;%[^\n]&quot;, useless) != EOF &amp;&amp; strcmp(useless, &quot;physical address intervals: &quot;))
+        fscanf(pfile, &quot;\n&quot;, useless);
+    fscanf(pfile, &quot;%[^\n]&quot;, useless);
+    fscanf(pfile, &quot;\n&quot;, useless);
+    // 我們要的資訊
+    unsigned long page_start, page_end, frame_start, frame_end;
+    int i=0;
+    while(fscanf(pfile, &quot;0x%lx ~ 0x%lx -&gt; 0x%lx ~ 0x%lx\n&quot;, &amp;page_start, &amp;page_end, &amp;frame_start, &amp;frame_end) != EOF){
+        pages[i].page_start = page_start;
+        pages[i].frame_start = frame_start;
+        i++;
+    }
+
+    fclose(pfile);
+}
+</code></pre>
+
+<ol>
+<li>最後再分別拿兩個child的result做比對（我就直接暴搜了）</li>
+</ol>
+<pre><code>void calc_phy_relation(struct page *child, struct page *parent, int num){
+    printf(&quot;\n\nthe virtual address intervals that map to same physical address at result_%d\n&quot;, num);
+    for(int i=0 ; i&lt;300 ; i++){
+        if(!child[i].page_start &amp;&amp; !child[i].frame_start) break;
+        for(int j=0 ; j&lt;300 ; j++){
+            if(!parent[j].page_start &amp;&amp; !parent[j].frame_start) break;
+            if(child[i].frame_start == parent[j].frame_start){
+                printf(&quot;0x%lx ~ 0x%lx\n&quot;, child[i].page_start, child[i].page_start+MASK-1);
+                break;
+            }
+        }
+    }
+}
+</code></pre>
+
+<p>完成拉～～其實麻煩的都在資料處理</p>
+<p>reference:<br>
+<a href="http://gityuan.com/2017/07/30/linux-process/" target="_blank" rel="noopener">http://gityuan.com/2017/07/30/linux-process/</a><br>
+<a href="https://www.cnblogs.com/kwingmei/p/3731746.html" target="_blank" rel="noopener">https://www.cnblogs.com/kwingmei/p/3731746.html</a><br>
+<a href="https://www.cnblogs.com/Rofael/archive/2013/04/13/3019153.html" target="_blank" rel="noopener">https://www.cnblogs.com/Rofael/archive/2013/04/13/3019153.html</a><br>
+<a href="https://www.ffutop.com/posts/2019-07-17-understand-kernel-13/" target="_blank" rel="noopener">https://www.ffutop.com/posts/2019-07-17-understand-kernel-13/</a><br>
+<a href="https://stackoverflow.com/questions/5748492/is-there-any-api-for-determining-the-physical-address-from-virtual-address-in-li" target="_blank" rel="noopener">https://stackoverflow.com/questions/5748492/is-there-any-api-for-determining-the-physical-address-from-virtual-address-in-li</a><br>
+<a href="http://www.jollen.org/blog/2007/01/process_vma.html" target="_blank" rel="noopener">http://www.jollen.org/blog/2007/01/process_vma.html</a></p>
+                
+                  
+                
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+          <a href="../prepare/" title="準備" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                準備
+              </span>
+            </div>
+          </a>
+        
+        
+          <a href="../project-1-check/" title="Project 1 檢討" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Project 1 檢討
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        powered by
+        <a href="https://www.mkdocs.org" target="_blank" rel="noopener">MkDocs</a>
+        and
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs</a>
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../assets/javascripts/application.c33a9706.js"></script>
+      
+      <script>app.initialize({version:"1.1",url:{base:"../.."}})</script>
+      
+    
+  </body>
+</html>

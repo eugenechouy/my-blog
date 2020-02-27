@@ -1,19 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"><url>
-     <loc>None</loc>
-     <lastmod>2020-02-27</lastmod>
+     <loc>https://eugenechouy.github.io/my-blog/</loc>
+     <lastmod>2020-02-28</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>None</loc>
-     <lastmod>2020-02-27</lastmod>
+     <loc>https://eugenechouy.github.io/my-blog/linux-kernel/prepare/</loc>
+     <lastmod>2020-02-28</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>None</loc>
-     <lastmod>2020-02-27</lastmod>
+     <loc>https://eugenechouy.github.io/my-blog/linux-kernel/project-1/</loc>
+     <lastmod>2020-02-28</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>None</loc>
-     <lastmod>2020-02-27</lastmod>
+     <loc>https://eugenechouy.github.io/my-blog/linux-kernel/project-1-check/</loc>
+     <lastmod>2020-02-28</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://eugenechouy.github.io/my-blog/modern-cpp/prepare/</loc>
+     <lastmod>2020-02-28</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://eugenechouy.github.io/my-blog/modern-cpp/usability/</loc>
+     <lastmod>2020-02-28</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://eugenechouy.github.io/my-blog/laradock/</loc>
+     <lastmod>2020-02-28</lastmod>
      <changefreq>daily</changefreq>
     </url>
 </urlset>

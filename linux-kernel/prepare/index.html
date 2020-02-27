@@ -11,7 +11,7 @@
       <meta http-equiv="x-ua-compatible" content="ie=edge">
       
       
-        <link rel="canonical" href="https://eugenechouy.github.io/my-blog/laradock/">
+        <link rel="canonical" href="https://eugenechouy.github.io/my-blog/linux-kernel/prepare/">
       
       
         <meta name="author" content="eugene chou">
@@ -35,18 +35,18 @@
       
         <meta name="lang:search.tokenizer" content="[\s\-]+">
       
-      <link rel="shortcut icon" href="../assets/images/favicon.png">
+      <link rel="shortcut icon" href="../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.1, mkdocs-material-4.6.3">
     
     
       
-        <title>Laradock - eugenechou/blog</title>
+        <title>準備 - eugenechou/blog</title>
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/application.adb8469c.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/application.adb8469c.css">
       
-        <link rel="stylesheet" href="../assets/stylesheets/application-palette.a8b3c06d.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/application-palette.a8b3c06d.css">
       
       
         
@@ -55,7 +55,7 @@
       
     
     
-      <script src="../assets/javascripts/modernizr.86422ebf.js"></script>
+      <script src="../../assets/javascripts/modernizr.86422ebf.js"></script>
     
     
       
@@ -64,7 +64,7 @@
         <style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
       
     
-    <link rel="stylesheet" href="../assets/fonts/material-icons.css">
+    <link rel="stylesheet" href="../../assets/fonts/material-icons.css">
     
     
     
@@ -89,7 +89,7 @@
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
     <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
     
-      <a href="#laradock-env" tabindex="0" class="md-skip">
+      <a href="#_1" tabindex="0" class="md-skip">
         Skip to content
       </a>
     
@@ -115,7 +115,7 @@
             </span>
             <span class="md-header-nav__topic">
               
-                Laradock
+                準備
               
             </span>
           
@@ -183,14 +183,16 @@
       
         
 
-<nav class="md-tabs" data-md-component="tabs">
+  
+
+<nav class="md-tabs md-tabs--active" data-md-component="tabs">
   <div class="md-tabs__inner md-grid">
     <ul class="md-tabs__list">
       
         
   <li class="md-tabs__item">
     
-      <a href=".." class="md-tabs__link md-tabs__link--active">
+      <a href="../.." class="md-tabs__link">
         Home
       </a>
     
@@ -202,7 +204,7 @@
   
     <li class="md-tabs__item">
       
-        <a href="../linux-kernel/prepare/" class="md-tabs__link">
+        <a href="./" class="md-tabs__link md-tabs__link--active">
           Linux Kernel
         </a>
       
@@ -215,7 +217,7 @@
   
     <li class="md-tabs__item">
       
-        <a href="../modern-cpp/prepare/" class="md-tabs__link">
+        <a href="../../modern-cpp/prepare/" class="md-tabs__link">
           modern cpp
         </a>
       
@@ -274,7 +276,7 @@
 
 
   <li class="md-nav__item">
-    <a href=".." title="Home" class="md-nav__link">
+    <a href="../.." title="Home" class="md-nav__link">
       Home
     </a>
   </li>
@@ -284,10 +286,12 @@
       
       
 
+  
 
-  <li class="md-nav__item md-nav__item--nested">
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2">
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2" checked>
     
     <label class="md-nav__link" for="nav-2">
       Linux Kernel
@@ -303,11 +307,59 @@
           
           
 
+  
 
-  <li class="md-nav__item">
-    <a href="../linux-kernel/prepare/" title="準備" class="md-nav__link">
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        準備
+      </label>
+    
+    <a href="./" title="準備" class="md-nav__link md-nav__link--active">
       準備
     </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    版本
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    環境
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#system-call" class="md-nav__link">
+    新增一個system call
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+    
   </li>
 
         
@@ -317,7 +369,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../linux-kernel/project-1/" title="Project 1" class="md-nav__link">
+    <a href="../project-1/" title="Project 1" class="md-nav__link">
       Project 1
     </a>
   </li>
@@ -329,7 +381,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../linux-kernel/project-1-check/" title="Project 1 檢討" class="md-nav__link">
+    <a href="../project-1-check/" title="Project 1 檢討" class="md-nav__link">
       Project 1 檢討
     </a>
   </li>
@@ -365,7 +417,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../modern-cpp/prepare/" title="準備" class="md-nav__link">
+    <a href="../../modern-cpp/prepare/" title="準備" class="md-nav__link">
       準備
     </a>
   </li>
@@ -377,7 +429,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../modern-cpp/usability/" title="Usability" class="md-nav__link">
+    <a href="../../modern-cpp/usability/" title="Usability" class="md-nav__link">
       Usability
     </a>
   </li>
@@ -392,87 +444,11 @@
       
       
 
-  
 
-
-  <li class="md-nav__item md-nav__item--active">
-    
-    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-    
-    
-      <label class="md-nav__link md-nav__link--active" for="__toc">
-        Laradock
-      </label>
-    
-    <a href="./" title="Laradock" class="md-nav__link md-nav__link--active">
+  <li class="md-nav__item">
+    <a href="../../laradock/" title="Laradock" class="md-nav__link">
       Laradock
     </a>
-    
-      
-<nav class="md-nav md-nav--secondary">
-  
-  
-  
-    <label class="md-nav__title" for="__toc">Table of contents</label>
-    <ul class="md-nav__list" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#laradock-env" class="md-nav__link">
-    修改 Laradock 下的 .env
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#nginx" class="md-nav__link">
-    Nginx
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#mysql" class="md-nav__link">
-    Mysql
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#phpmyadmin" class="md-nav__link">
-    phpmyadmin
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
-    啟動
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#laravel" class="md-nav__link">
-    設定 laravel
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
-    跑多個專案
-  </a>
-  
-</li>
-      
-      
-      
-      
-      
-    </ul>
-  
-</nav>
-    
   </li>
 
     
@@ -495,50 +471,22 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#laradock-env" class="md-nav__link">
-    修改 Laradock 下的 .env
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#nginx" class="md-nav__link">
-    Nginx
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#mysql" class="md-nav__link">
-    Mysql
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#phpmyadmin" class="md-nav__link">
-    phpmyadmin
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#_1" class="md-nav__link">
-    啟動
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#laravel" class="md-nav__link">
-    設定 laravel
+    版本
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#_2" class="md-nav__link">
-    跑多個專案
+    環境
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#system-call" class="md-nav__link">
+    新增一個system call
   </a>
   
 </li>
@@ -560,159 +508,135 @@
               
                 
                 
-                  <h1>Laradock</h1>
+                  <h1>準備</h1>
                 
-                <p>在寫 Laravel 之前的環境設置非常繁瑣，而且最近也在找能夠輕鬆架好多個 laravel 專案的方法，所以就來試試 Laradock，有些雷所以還是記錄一下</p>
-<pre><code>git clone https://github.com/Laradock/laradock.git
-</code></pre>
-
-<h4 id="laradock-env">修改 Laradock 下的 .env</h4>
-<pre><code>cp env-example .env
-</code></pre>
-
-<pre><code>你專案的路徑
-APP_CODE_PATH_HOST=/path/to/project
-APP_CODE_PATH_CONTAINER=/var/www
-</code></pre>
-
-<p>如此 /path/to/project 會對應至 workspace 的 /var/www ，如果你一次要跑多個專案可以將他們都放到該資料夾下</p>
-<h4 id="nginx">Nginx</h4>
-<p>.env</p>
-<pre><code>NGINX_HOST_HTTP_PORT=80
-NGINX_HOST_HTTPS_PORT=443
-NGINX_SSL_PATH=./nginx/ssl/
-</code></pre>
-
-<p>nginx/sites 下編輯設定檔</p>
-<pre><code>$ cp laravel.conf.example laravel.test.conf
-</code></pre>
-
-<h4 id="mysql">Mysql</h4>
-<p>.env: <code>MYSQL_USER</code>, <code>MYSQL_PASSWORD</code> 要和 laravel 下的 .env 一樣 </p>
-<pre><code>MYSQL_DATABASE=dataset
-MYSQL_USER=default
-MYSQL_PASSWORD=secret
-MYSQL_ROOT_PASSWORD=
-</code></pre>
-
-<p>laravel .env: DB_HOST 改為 mysql</p>
-<pre><code>DB_HOST=mysql
-</code></pre>
-
-<p>如果你希望 root 密碼為空，在 docker-compose.yml 中新增 <code>MYSQL_ALLOW_EMPTY_PASSWORD=true</code></p>
-<pre><code>environment:
-- MYSQL_DATABASE=${MYSQL_DATABASE}
-- MYSQL_USER=${MYSQL_USER}
-- MYSQL_PASSWORD=${MYSQL_PASSWORD}
-- MYSQL_ALLOW_EMPTY_PASSWORD=true
-- MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
-- TZ=${WORKSPACE_TIMEZONE}
-</code></pre>
-
-<h4 id="phpmyadmin">phpmyadmin</h4>
-<p>.env: <code>PMA_USER</code>, <code>PMA_PASSWORD</code> 要和 laravel 下的 .env 一樣</p>
-<pre><code>PMA_USER=default
-PMA_PASSWORD=secret
-PMA_ROOT_PASSWORD=
-...
-PMA_PORT=8081
-</code></pre>
-
-<h4 id="_1">啟動</h4>
-<p>第一次跑可能會有點久</p>
-<pre><code>docker-compose up -d nginx mysql phpmyadmin
-</code></pre>
-
+                <h3 id="_1">版本</h3>
 <ul>
-<li>
-<p>錯誤: 需要將 docker 更新到最新版</p>
-<blockquote>
-<p>Service 'mysql' failed to build: Please provide a source image with <code>from</code> prior to commit</p>
-</blockquote>
-</li>
+<li>ubuntu 16.04</li>
+<li>linux-kernel 4.4.1</li>
 </ul>
-<h4 id="laravel">設定 laravel</h4>
-<p>等到環境都弄好後就進入 container 設定好 laravel project</p>
-<pre><code>$ docker-compose exec workspace bash
-$ composer install
-...
+<p><a href="https://mirrors.edge.kernel.org/pub/linux/kernel/v4.x/" target="_blank" rel="noopener">https://mirrors.edge.kernel.org/pub/linux/kernel/v4.x/</a>
+<a href="https://elixir.bootlin.com/linux/v4.4.100/source" target="_blank" rel="noopener">https://elixir.bootlin.com/linux/v4.4.100/source</a></p>
+<h3 id="_2">環境</h3>
+<p>下載後先解壓縮</p>
+<pre><code>$ tar zxvf linux-3.9.1.tar.gz 
 </code></pre>
 
+<p>編譯 </p>
+<pre><code>$ cd linux-3.9.1
+$ make menuconfig # or make defconfig
+$ make clean
+$ make
+$ make modules_install install
+</code></pre>
+
+<p>第一次make有噴 </p>
+<blockquote>
+<p>error: include/linux/compiler-gcc.h:106:30: fatal error: linux/compiler-gcc5.h：No such file or directory</p>
+</blockquote>
+<p>把當前kernel原碼中的gcc複製到要編譯的kernel裡即可</p>
+<blockquote>
+<p><a href="https://blog.csdn.net/u014525494/article/details/53573298" target="_blank" rel="noopener">https://blog.csdn.net/u014525494/article/details/53573298</a></p>
+</blockquote>
+<pre><code>$ file arch/x86/boot/bzImage
+arch/x86/boot/bzImage: Linux kernel x86 boot executable bzImage, version 3.9.1 (root@eugene) #0 SMP Sun Nov 17 22:21:14 CST 2019, RO-rootFS, swap_dev 0x5, Normal VGA
+</code></pre>
+
+<p>Enable the kernel for boot(雖然好像他會自己加)</p>
+<pre><code>$ sudo update-initramfs -c -k 3.19
+$ sudo update-grub
+</code></pre>
+
+<p>然後直接用這個kernel開機的話會卡在
+<code>Uncompressing Linux... done, booting the kernel.</code>
+上網查了之後發現可能的原因一大堆，索性直接換了3.10.1看看結果還是一樣
+另外發現在 <code>make install</code> 和 <code>update-initramfs</code> 的時候有噴 <code>amd64-microcode unsupported kernel version</code> 
+最後改成4.4.1(本來的kernel是4.4.0)就好了</p>
+<p>開機之後確定使用的kernel是我們剛剛編的</p>
+<pre><code>$ uname -a
+Linux eugene 4.4.1 #1 SMP Mon Nov 18 14:36:16 CST 2019 x86_64 x86_64 x86_64 GNU/Linux
+</code></pre>
+
+<p>成功!</p>
+<h3 id="system-call">新增一個system call</h3>
 <ul>
-<li>
-<p>migrate 錯誤1</p>
-<blockquote>
-<p>php_network_getaddresses: getaddrinfo failed: nodename nor servname provided, or not known</p>
-</blockquote>
-<p>原因是本地不知道 mysql 是什麼，需要指定 DB_HOST 為 127.0.0.1</p>
-</li>
+<li>先建立一個程式裡面有 <code>sys_helloworld</code> 的 function</li>
 </ul>
-<pre><code>$ env DB_HOST=127.0.0.1 php artisan migrate
-</code></pre>
+<pre><code>$ cd linux-4.4.1/
+$ mkdir mycall
+$ vim helloworld.c
 
-<ul>
-<li>
-<p>migrate 錯誤2 </p>
-<blockquote>
-<p>SQLSTATE[42000]: Syntax error or access violation: 1231 Variable 'sql_mode' can't be set to the value of 'NO_AUTO_CREATE_USER'</p>
-</blockquote>
-<p>需要修改 laravel project 的 config/database.php，將 mysql 的 stict 改為 false</p>
-</li>
-</ul>
-<h3 id="_2">跑多個專案</h3>
-<p>要將多個 project 放到同一台機器上也很簡單，首先在你的 APP_CODE_PATH_HOST 中放好多個 project</p>
-<pre><code>/path/to/project
-- project1
-- project2
-</code></pre>
-
-<p>然後去 Laradock/nginx/sites 下多建立多個設定擋</p>
-<pre><code># project1.conf
-server {
-    listen 80;
-    listen [::]:80;
-
-    server_name project1;
-    root /var/www/project1/public;
-    ...
+#include &lt;linux/kernel.h&gt;
+asmlinkage int sys_helloworld(void){
+        printk(&quot;hello world&quot;);
+        return 0;
 }
 </code></pre>
 
-<pre><code># project2.conf
-server {
-    listen 80;
-    listen [::]:80;
+<ul>
+<li>建立Makefile</li>
+</ul>
+<pre><code>$ vim Makefile
 
-    server_name project2;
-    root /var/www/project2/public;
-    ...
+obj-y := helloworld.o
+</code></pre>
+
+<ul>
+<li>在主要的Makefile中新增mycall資料夾進去</li>
+</ul>
+<pre><code>$ cd ..
+$ vim Makefile
+
+core-y += kernel/ certs/ mm/ fs/ ipc/ security/ crypto/ block/ mycall/
+</code></pre>
+
+<ul>
+<li>在system call table裡新增我們的system call</li>
+</ul>
+<pre><code>$ vim arch/x86/entry/syscalls/syscall_64.tbl
+
+546 64 helloworld sys_helloworld # 在最後面一行加上
+</code></pre>
+
+<ul>
+<li>修改 system call header</li>
+</ul>
+<pre><code>$ vim include/linux/syscalls.h
+
+# 加在#endif前
+asmlinkage int helloworld(void);
+</code></pre>
+
+<ul>
+<li>編譯</li>
+</ul>
+<pre><code>$ sudo make
+$ sudo make modules_install install
+$ reboot
+</code></pre>
+
+<p>最後寫一個程式測試一下</p>
+<pre><code>#include &lt;stdio.h&gt;
+#include &lt;syscall.h&gt;
+#include &lt;sys/types.h&gt;
+
+int main(){
+        int a = syscall(546);
+        printf(&quot;system call sys_hello_world return %d\n&quot;, a);
+        return 0;
 }
+
 </code></pre>
 
-<p>如果是在本地測試在 /etc/hosts 加上</p>
-<pre><code>127.0.0.1 project1
-127.0.0.1 project2
+<pre><code>$ dmesg
 </code></pre>
 
-<p>再來要新增多個 database ，上網查了下好像沒有輕鬆的方法可以直接建立多個 database，需要在 Laradock/mysql/docker-entrypoint-initdb.d 下寫腳本讓 container 建立時執行，既然都要在這邊寫腳本了，乾脆所有會用到的資料庫都在這邊設定好，上述的設定擋就填個 dummy database 和 user </p>
-<pre><code># createdb.sql
-
-CREATE DATABASE IF NOT EXISTS `project1`;
-CREATE DATABASE IF NOT EXISTS `project2`;
-
-CREATE USER 'user1'@'%' IDENTIFIED BY 'user1';
-CREATE USER 'user2'@'%' IDENTIFIED BY 'user2';
-
-GRANT ALL ON `project1`.* TO 'user1'@'%';
-GRANT ALL ON `project2`.* TO 'user2'@'%';
-</code></pre>
-
-<p>記得在 mysql 設定有更動後刪掉資料再重建</p>
-<pre><code>$ rm -Rf ~/.laradock/data/mysql
-</code></pre>
-
-<hr />
-<p>如此就架好多個 laravel 專案拉，如果 https 需要憑證可以使用 cerbot，會自動幫你去 letsencrypt 申請憑證，再將 cerbot 存放憑證的位址和 nginx 連通即可。 </p>
+<p>有看到hello world就代表成功了</p>
+<p>reference:<br>
+<a href="https://chybeta.github.io/2017/10/19/Linux-kernel-development-1-%E7%8E%AF%E5%A2%83%E5%87%86%E5%A4%87/" target="_blank" rel="noopener">https://chybeta.github.io/2017/10/19/Linux-kernel-development-1-环境准备/</a><br>
+<a href="https://www.linux.com/tutorials/how-compile-linux-kernel-0/" target="_blank" rel="noopener">https://www.linux.com/tutorials/how-compile-linux-kernel-0/</a><br>
+<a href="https://wenyuangg.github.io/posts/linux/linux-add-system-call.html" target="_blank" rel="noopener">https://wenyuangg.github.io/posts/linux/linux-add-system-call.html</a><br>
+<a href="https://blog.kaibro.tw/2016/11/07/Linux-Kernel%E7%B7%A8%E8%AD%AF-Ubuntu/?fbclid=IwAR0n1xjghssrijlA7L8nFhjojsu-Wdb8w25900l_WVtvDQeJgJzv7MaXxIU" target="_blank" rel="noopener">https://blog.kaibro.tw/2016/11/07/Linux-Kernel編譯-Ubuntu/?fbclid=IwAR0n1xjghssrijlA7L8nFhjojsu-Wdb8w25900l_WVtvDQeJgJzv7MaXxIU</a></p>
                 
                   
                 
@@ -734,7 +658,7 @@ GRANT ALL ON `project2`.* TO 'user2'@'%';
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid">
         
-          <a href="../modern-cpp/usability/" title="Usability" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../.." title="Home" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-flex__cell md-flex__cell--shrink">
               <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
             </div>
@@ -743,11 +667,25 @@ GRANT ALL ON `project2`.* TO 'user2'@'%';
                 <span class="md-footer-nav__direction">
                   Previous
                 </span>
-                Usability
+                Home
               </span>
             </div>
           </a>
         
+        
+          <a href="../project-1/" title="Project 1" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Project 1
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
         
       </nav>
     </div>
@@ -769,9 +707,9 @@ GRANT ALL ON `project2`.* TO 'user2'@'%';
       
     </div>
     
-      <script src="../assets/javascripts/application.c33a9706.js"></script>
+      <script src="../../assets/javascripts/application.c33a9706.js"></script>
       
-      <script>app.initialize({version:"1.1",url:{base:".."}})</script>
+      <script>app.initialize({version:"1.1",url:{base:"../.."}})</script>
       
     
   </body>
