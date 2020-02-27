@@ -1,1 +1,1 @@
-# my-blog
+simply `mkdocs gh-deploy` after `commit`
