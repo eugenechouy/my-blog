@@ -11,7 +11,7 @@
       <meta http-equiv="x-ua-compatible" content="ie=edge">
       
       
-        <link rel="canonical" href="https://eugenechouy.github.io/my-blog/linux-kernel/project-1-check/">
+        <link rel="canonical" href="https://eugenechouy.github.io/my-blog/linux-kernel/project2/">
       
       
         <meta name="author" content="eugene chou">
@@ -40,7 +40,7 @@
     
     
       
-        <title>Project 1 檢討 - eugenechou/blog</title>
+        <title>Project 2 - eugenechou/blog</title>
       
     
     
@@ -89,7 +89,7 @@
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
     <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
     
-      <a href="#_1" tabindex="1" class="md-skip">
+      <a href="#linux-pid" tabindex="1" class="md-skip">
         Skip to content
       </a>
     
@@ -115,7 +115,7 @@
             </span>
             <span class="md-header-nav__topic">
               
-                Project 1 檢討
+                Project 2
               
             </span>
           
@@ -331,6 +331,18 @@
           
           
 
+
+  <li class="md-nav__item">
+    <a href="../project-1-check/" title="Project 1 檢討" class="md-nav__link">
+      Project 1 檢討
+    </a>
+  </li>
+
+        
+          
+          
+          
+
   
 
 
@@ -340,11 +352,11 @@
     
     
       <label class="md-nav__link md-nav__link--active" for="__toc">
-        Project 1 檢討
+        Project 2
       </label>
     
-    <a href="./" title="Project 1 檢討" class="md-nav__link md-nav__link--active">
-      Project 1 檢討
+    <a href="./" title="Project 2" class="md-nav__link md-nav__link--active">
+      Project 2
     </a>
     
       
@@ -356,29 +368,57 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
-    問題一
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
-    問題二
+  <a href="#linux-pid" class="md-nav__link">
+    Linux PID
   </a>
   
     <nav class="md-nav">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#mmap" class="md-nav__link">
-    觀察 mmap
+  <a href="#namespace" class="md-nav__link">
+    忽略行程之間的關係及namespace
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    考慮行程間的關係
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pid-namespace" class="md-nav__link">
+    增加 PID Namespace
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    原碼
   </a>
   
 </li>
         
       </ul>
     </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    第一題
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    第二題
+  </a>
   
 </li>
       
@@ -390,18 +430,6 @@
   
 </nav>
     
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../project2/" title="Project 2" class="md-nav__link">
-      Project 2
-    </a>
   </li>
 
         
@@ -501,29 +529,57 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
-    問題一
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
-    問題二
+  <a href="#linux-pid" class="md-nav__link">
+    Linux PID
   </a>
   
     <nav class="md-nav">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#mmap" class="md-nav__link">
-    觀察 mmap
+  <a href="#namespace" class="md-nav__link">
+    忽略行程之間的關係及namespace
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    考慮行程間的關係
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pid-namespace" class="md-nav__link">
+    增加 PID Namespace
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    原碼
   </a>
   
 </li>
         
       </ul>
     </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    第一題
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    第二題
+  </a>
   
 </li>
       
@@ -544,288 +600,187 @@
               
                 
                 
-                  <h1>Project 1 檢討</h1>
+                  <h1>Project 2</h1>
                 
-                <h3 id="_1">問題一</h3>
-<p>轉出的 physical address 有的會超大（前面多一串80000000），於是我把 <code>pgd_val</code>, <code>pud_val</code>, <code>pmd_val</code>, <code>pte_val</code> 都印出來發現只有 <code>pte_val</code> 前面多這一串，於是就先去看了下 <code>pte_offset_kernel</code></p>
-<pre><code>/*
- * the pte page can be thought of an array like this: pte_t[PTRS_PER_PTE]
- *
- * this function returns the index of the entry in the pte page which would
- * control the given virtual address
- */
-static inline unsigned long pte_index(unsigned long address)
-{
-    return (address &gt;&gt; PAGE_SHIFT) &amp; (PTRS_PER_PTE - 1);
-}
-
-static inline pte_t *pte_offset_kernel(pmd_t *pmd, unsigned long address)
-{
-    return (pte_t *)pmd_page_vaddr(*pmd) + pte_index(address);
-}
-</code></pre>
-
-<p>發現很正常，和上幾層做的事都一樣，那看看 <code>pte_val</code></p>
-<pre><code>#define pte_val(x)  native_pte_val(x)
-</code></pre>
-
-<pre><code>static inline pteval_t native_pte_val(pte_t pte)
-{
-    return pte.pte;
-}
-
-static inline pteval_t pte_flags(pte_t pte)
-{
-    return native_pte_val(pte) &amp; PTE_FLAGS_MASK;
-}
-</code></pre>
-
-<p>而當我去找 <code>native_pte_val</code> 時發現下面有一個 <code>function pte_flags</code>，他從 <code>native_pte_val</code> 中取出 flag 的部分，也難怪直接取 <code>pte_val</code> 會包含 flag，我們需要把 flag 去掉，所以先去看看<code>PTE_FLAGS_MASK</code></p>
-<pre><code>/* Extracts the PFN from a (pte|pmd|pud|pgd)val_t of a 4KB page */
-#define PTE_PFN_MASK        ((pteval_t)PHYSICAL_PAGE_MASK)
-
-/* Extracts the flags from a (pte|pmd|pud|pgd)val_t of a 4KB page */
-#define PTE_FLAGS_MASK      (~PTE_PFN_MASK)
-</code></pre>
-
-<p>看到這邊就恍然大悟，因為我們最後取物理位址是用</p>
-<pre><code>pte_val(*pte) &amp; PAGE_MASK　+ vaddr &amp; ~PAGE_MASK
-</code></pre>
-
-<p>但是看看上面幾層在取得物理位址時都是用</p>
-<pre><code>pxx_page_vaddr(*pxx) + index
-</code></pre>
-
-<p>其中 <code>pxx_page_vaddr</code> 都是在做</p>
-<pre><code>pxx_val(*pxx) &amp; PTE_PFN_MASK
-</code></pre>
-
-<p>我們將 <code>pte_val</code> 的 flag 濾掉就好了～</p>
-<pre><code>pte_val(*pte) &amp; PTE_PFN_MASK &amp; PAGE_MASK　+ vaddr &amp; ~PAGE_MASK
-</code></pre>
-
-<blockquote>
-<p>PFN: page frame number</p>
-</blockquote>
-<h3 id="_2">問題二</h3>
-<p>如何直接訪問實體記憶體位址？</p>
-<p>busybox 中的 devmem 可直接操作物理地址
-<a href="https://github.com/brgl/busybox/blob/master/miscutils/devmem.c" target="_blank" rel="noopener">https://github.com/brgl/busybox/blob/master/miscutils/devmem.c</a></p>
-<p>其中他使用到 <code>mmap</code> 和 <code>/dev/mem</code>，透過 <code>mmap</code> 將 <code>/dev/mem</code> 的物理地址映射到 user space，我們就可以像操作虛擬地址般讀寫</p>
-<pre><code>Usage: devmem ADDRESS [WIDTH [VALUE]]
-
-Read/write from physical address
-
-        ADDRESS Address to act upon
-        WIDTH   Width (8/16/...)
-        VALUE   Data to be written
-</code></pre>
-
-<p>要實作出 devmem 有三個主要步驟</p>
-<p>1 開啟 <code>/dev/mem</code></p>
-<pre><code>fd = open(&quot;/dev/mem&quot;, argv[3] ? (O_RDWR | O_SYNC) : (O_RDONLY | O_SYNC));
-</code></pre>
-
-<p>2 將物理地址透過 <code>mmap</code> 映射到 user space</p>
-<pre><code> /* void *mmap(void *addr, size_t length, int prot, int flags, int fd, off_t offset); */
-map_base = mmap(0, MAP_SIZE, argv[3] ? (PROT_READ | PROT_WRITE) : PROT_READ, MAP_SHARED, fd, target &amp; MAP_MASK);
-</code></pre>
-
-<p>3 算出地址後進行讀寫</p>
-<pre><code>virt_addr = map_base + (target &amp; MAP_MASK);
-// write
-*(*type)virt_addr = write_val
-// read
-read_val = *(*type)virt_addr
-</code></pre>
-
-<h4 id="mmap">觀察 mmap</h4>
-<pre><code>static int mmap_mem(struct file *file, struct vm_area_struct *vma)
-{
-    size_t size = vma-&gt;vm_end - vma-&gt;vm_start;
-    phys_addr_t offset = (phys_addr_t)vma-&gt;vm_pgoff &lt;&lt; PAGE_SHIFT;
-
-    /* It's illegal to wrap around the end of the physical address space. */
-    if (offset + (phys_addr_t)size - 1 &lt; offset)
-        return -EINVAL;
-
-    if (!valid_mmap_phys_addr_range(vma-&gt;vm_pgoff, size))
-        return -EINVAL;
-
-    if (!private_mapping_ok(vma))
-        return -ENOSYS;
-
-    if (!range_is_allowed(vma-&gt;vm_pgoff, size))
-        return -EPERM;
-
-    if (!phys_mem_access_prot_allowed(file, vma-&gt;vm_pgoff, size,
-                        &amp;vma-&gt;vm_page_prot))
-        return -EINVAL;
-
-    vma-&gt;vm_page_prot = phys_mem_access_prot(file, vma-&gt;vm_pgoff,
-                         size,
-                         vma-&gt;vm_page_prot);
-
-    vma-&gt;vm_ops = &amp;mmap_mem_ops;
-
-    /* Remap-pfn-range will mark the range VM_IO */
-    if (remap_pfn_range(vma,
-                vma-&gt;vm_start,
-                vma-&gt;vm_pgoff,
-                size,
-                vma-&gt;vm_page_prot)) {
-        return -EAGAIN;
-    }
-    return 0;
-}
-</code></pre>
-
-<p>1 <strong>valid_mmap_phys_addr_range</strong> 檢查物理地址是不是在範圍內</p>
-<pre><code>/*
- * Do not allow /dev/mem mappings beyond the supported physical range.
- */
-int valid_mmap_phys_addr_range(unsigned long pfn, size_t size)
-{
-    return (pfn + (size &gt;&gt; PAGE_SHIFT)) &lt;= (1 + (PHYS_MASK &gt;&gt; PAGE_SHIFT));
-}
-</code></pre>
-
-<p>2 <strong>private_mapping_ok</strong> 對於有 MMU 的 CPU 直接回傳 1(MMU的權限管理可以支持私有映射)</p>
-<pre><code>#ifndef CONFIG_MMU
-...
-#else
-
-static inline int private_mapping_ok(struct vm_area_struct *vma)
-{
-    return 1;
-}
-#endif
-</code></pre>
-
-<p>3 <strong>range_is_allowed</strong> 以 frame 為單位檢查物理地址，每一頁都呼叫 <strong>devmem_is_allowed</strong> 檢查</p>
-<pre><code>#ifdef CONFIG_STRICT_DEVMEM
-static inline int range_is_allowed(unsigned long pfn, unsigned long size)
-{
-    u64 from = ((u64)pfn) &lt;&lt; PAGE_SHIFT;
-    u64 to = from + size;
-    u64 cursor = from;
-
-    while (cursor &lt; to) {
-        if (!devmem_is_allowed(pfn)) {
-            printk(KERN_INFO
-        &quot;Program %s tried to access /dev/mem between %Lx-&gt;%Lx.\n&quot;,
-                current-&gt;comm, from, to);
-            return 0;
-        }
-        cursor += PAGE_SIZE;
-        pfn++;
-    }
-    return 1;
-}
-#else
-static inline int range_is_allowed(unsigned long pfn, unsigned long size)
-{
-    return 1;
-}
-#endif
-</code></pre>
-
-<p>3.1 <strong>devmem_is_allowed</strong></p>
-<pre><code>/*
- * devmem_is_allowed() checks to see if /dev/mem access to a certain
- * address is valid. The argument is a physical page number.
- * We mimic x86 here by disallowing access to system RAM as well as
- * device-exclusive MMIO regions. This effectively disable read()/write()
- * on /dev/mem.
- */
-int devmem_is_allowed(unsigned long pfn)
-{
-    if (iomem_is_exclusive(pfn &lt;&lt; PAGE_SHIFT))
-        return 0;
-    if (!page_is_ram(pfn))
-        return 1;
-    return 0;
-}
-
-</code></pre>
-
-<p>3.1.1 <strong>iomem_is_exclusive</strong> 遍歷 iomem_resource，檢查物理地址是否為 busy 或 exclusive </p>
-<pre><code>#ifdef CONFIG_STRICT_DEVMEM
-static int strict_iomem_checks = 1;
-#else
-static int strict_iomem_checks;
-#endif
-
-/*
- * check if an address is reserved in the iomem resource tree
- * returns 1 if reserved, 0 if not reserved.
- */
-int iomem_is_exclusive(u64 addr)
-{
-    struct resource *p = &amp;iomem_resource;
-    int err = 0;
-    loff_t l;
-    int size = PAGE_SIZE;
-
-    if (!strict_iomem_checks)
-        return 0;
-
-    addr = addr &amp; PAGE_MASK;
-
-    read_lock(&amp;resource_lock);
-    for (p = p-&gt;child; p ; p = r_next(NULL, p, &amp;l)) {
-        /*
-         * We can probably skip the resources without
-         * IORESOURCE_IO attribute?
-         */
-        if (p-&gt;start &gt;= addr + size)
-            break;
-        if (p-&gt;end &lt; addr)
-            continue;
-        if (p-&gt;flags &amp; IORESOURCE_BUSY &amp;&amp;
-             p-&gt;flags &amp; IORESOURCE_EXCLUSIVE) {
-            err = 1;
-            break;
-        }
-    }
-    read_unlock(&amp;resource_lock);
-
-    return err;
-}
-</code></pre>
-
-<blockquote>
-<p>對於外設的IO資源，kernel中使用platform device機制來註冊平台設備（platform_device_register）時調用insert_resource將該設備相應的io資源插入到iomem_resource鍊錶中。
-如果我要對某外設的IO資源進行保護，防止用戶空間訪問，可以將其resource的flags置位exclusive即可。
-<a href="https://blog.csdn.net/skyflying2012/article/details/47611399" target="_blank" rel="noopener">https://blog.csdn.net/skyflying2012/article/details/47611399</a></p>
-</blockquote>
-<p>3.1.2 不允許訪問 ram 地址</p>
-<pre><code>int page_is_ram(unsigned long pfn)
-{
-#ifndef CONFIG_PPC64    /* XXX for now */
-    return pfn &lt; max_pfn;
-#else
-    unsigned long paddr = (pfn &lt;&lt; PAGE_SHIFT);
-    struct memblock_region *reg;
-
-    for_each_memblock(memory, reg)
-        if (paddr &gt;= reg-&gt;base &amp;&amp; paddr &lt; (reg-&gt;base + reg-&gt;size))
-            return 1;
-    return 0;
-#endif
-}
-</code></pre>
-
-<p>4 <code>phys_mem_access_prot_allowed</code> 直接回傳1</p>
-<p>5 <code>phys_mem_access_prot</code> 確定我們映射頁的權限</p>
-<p>6 最後呼叫 <code>remap_pfn_range</code> 設定 paging</p>
-<p>結論： 如果有開 CONFIG_STRICT_DEVMEM 會先檢查</p>
+                <h3 id="linux-pid">Linux PID</h3>
+<p>在linux中ID主要有以下四種:</p>
 <ol>
-<li>物理地址不能超過上限</li>
-<li>不能是exclusive</li>
-<li>不能是ram</li>
+<li>PID</li>
+<li>TGID 
+如果一個行程是以 <code>CLONE_THREAD</code> 建立，則它處於一個 Thread Group，ID就是TGID，相同的Thread Group TGID都相同，其中Thread Group leader或是沒有使用執行續的PID和TGID相同。</li>
+<li>PGID
+    行程可以組成行程組，PGID等於組長ID</li>
+<li>SID
+    行程組也可以組成 session</li>
 </ol>
-<p>關閉的話就沒有限制</p>
+<p>為了管理PID linux使用了許多數據結構，直接從原始碼觀察比較難理解，以下我們慢慢將需求加入來分析</p>
+<h4 id="namespace">忽略行程之間的關係及namespace</h4>
+<pre><code>struct task_struct {
+    ...
+    struct pid_link pids;
+    ...
+};
+
+struct pid_link {
+    struct hlist_node node;
+    struct pid *pid;
+};
+
+struct pid {
+    struct hlist_head tasks;
+    int nr;  // PID
+    struct hlist_node pid_chain;
+};
+</code></pre>
+
+<p>每個 task_struct 有個指向 struct pid 的指標，strcut pid 包含 PID</p>
+<ul>
+<li>pid_hash</li>
+<li>pid_map</li>
+</ul>
+<h4 id="_1">考慮行程間的關係</h4>
+<p>task_struct 中的 pid_link 多加幾項來只到其組長的 struct pid 
+struct pid 加上幾項來指回組長的 task_struct</p>
+<pre><code>enum pid_type {
+    PIDTYPE_PID,
+    PIDTYPE_PGID,
+    PIDTYPE_SID,
+    PIDTYPE_MAX // number of ID type (not include TGID)
+};
+
+struct task_struct {
+    ...
+    pid_t pid;
+    pid_t tgid;
+    struct task_struct *group_leader; // Thread group leader
+    struct pid_link pids[PIDTYPE_MAX];
+    ...
+};
+
+struct pid_link {
+    struct hlist_node node;
+    struct pid *pid;
+};
+
+struct pid {
+    struct hlist_head tasks[PIDTYPE_MAX];
+    int nr;
+    int hlist_node pid_chain;
+}
+</code></pre>
+
+<p>假設今天有三個行程A B C在同一個行程組，其中A是行程組組長
+* B, C 的 pids[PIDTYPE_PFID] 指向 A 的 struct pid
+* A 的 struct pid 的 task[PIDTYPE_PGID] 串連起所有以該 PID 為組長的的行程　</p>
+<h4 id="pid-namespace">增加 PID Namespace</h4>
+<p>在每個可見行程的 namespace 都會給該行程分配一個 PID，所以一個行程可能有多個 PID</p>
+<pre><code>struct pid{
+    unsigned int level;
+    struct hlist_head tasks[PIDTYPE_MAX];
+    struct upid numbers[1];
+}
+
+struct upid{
+    int nr;
+    struct pid_namespace *ns;   // pid 所處 namespace
+    struct hlist_node pid_chain;
+}
+</code></pre>
+
+<p>numbers[0] 表示 global namespace，numbers[i] 表示第 i 層 namespace，i 越大所在層級越低</p>
+<h4 id="_2">原碼</h4>
+<pre><code>include/linux/sched.h
+
+struct task_struct {
+    ···
+    pid_t                 pid;
+    pid_t                 tgid;
+    struct task_struct   *group_leader;
+    struct pid_link       pids[PIDTYPE_MAX];
+    struct nsproxy       *nsproxy;
+    ···
+};
+</code></pre>
+
+<p>其中 nsproxy 存該行程相關 namespace 資訊</p>
+<pre><code>include/linux/nsproxy.h
+
+struct nsproxy {
+    atomic_t count;
+    struct uts_namespace *uts_ns;
+    struct ipc_namespace *ipc_ns;
+    struct mnt_namespace *mnt_ns;
+    struct pid_namespace *pid_ns_for_children;
+    struct net       *net_ns;
+    struct cgroup_namespace *cgroup_ns;
+};
+</code></pre>
+
+<pre><code>include/linux/pid.h
+
+struct upid {
+        /* Try to keep pid_chain in the same cacheline as nr for find_vpid */
+        int nr;
+        struct pid_namespace *ns;
+        struct hlist_node pid_chain;
+};
+
+struct pid
+{
+    atomic_t count;
+    unsigned int level;
+    /* lists of tasks that use this pid */
+    struct hlist_head tasks[PIDTYPE_MAX];
+    struct rcu_head rcu;
+    struct upid numbers[1];
+};
+</code></pre>
+
+<h3 id="_3">第一題</h3>
+<p>Write a new system call <code>get_process_zero_session_group(unsigned int *, int)</code>so that a process can use it to get the global PIDs of all processes that are in the same login session of process 0</p>
+<p>這次的題目比上次單純許多，只要跑過每個 process 然後抓出 sid = 0 即可</p>
+<pre><code>asmlinkage int get_process_zero_session_group(unsigned int *result, int size){
+        struct task_struct *p;
+        unsigned int ret[size];
+        int cnt = 0;
+
+        for_each_process(p){
+            if( task_session(p)-&gt;numbers[0].nr == 0 &amp;&amp; cnt &lt; size) 
+                ret[cnt++] = task_pid(p)-&gt;numbers[0].nr;
+        }
+
+        if(copy_to_user(result, ret, sizeof(ret)))
+            printk(&quot;error while copy_to_user\n&quot;);
+
+        return cnt;
+}
+</code></pre>
+
+<h3 id="_4">第二題</h3>
+<p>第二題是要拿出跟呼叫 system call 的 process 同一個 session 的 process，首先抓出 process 的 sid 再跑過所有 process 即可，注意上述的 sid 都要是在 <strong>root namespace</strong> 的 sid</p>
+<pre><code>asmlinkage int get_process_session_group(unsigned int *result, int size){
+    struct task_struct *p;
+    int current_sid;
+    unsigned int ret[size];
+    int cnt = 0;
+
+    current_sid = task_session(current)-&gt;numbers[0].nr;
+    for_each_process(p){
+        if( task_session(p)-&gt;numbers[0].nr == current_sid &amp;&amp; cnt &lt; size )
+            ret[cnt++] = task_pid(p)-&gt;numbers[task_pid(p)-&gt;level].nr;
+    }
+
+    if(copy_to_user(result, ret, sizeof(ret)))
+            printk(&quot;error while copy_to_user\n&quot;);
+    return cnt;
+}   
+</code></pre>
+
+<blockquote>
+<p><p>reference:<br>
+<a href="https://www.cnblogs.com/hazir/p/linux_kernel_pid.html" target="_blank" rel="noopener">https://www.cnblogs.com/hazir/p/linux_kernel_pid.html</a><br>
+<a href="https://carecraft.github.io/basictheory/2017/03/linux-pid-manage/" target="_blank" rel="noopener">https://carecraft.github.io/basictheory/2017/03/linux-pid-manage/</a></p></p>
+</blockquote>
                 
                   
                 
@@ -847,7 +802,7 @@ int iomem_is_exclusive(u64 addr)
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid">
         
-          <a href="../project-1/" title="Project 1" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../project-1-check/" title="Project 1 檢討" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-flex__cell md-flex__cell--shrink">
               <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
             </div>
@@ -856,19 +811,19 @@ int iomem_is_exclusive(u64 addr)
                 <span class="md-footer-nav__direction">
                   Previous
                 </span>
-                Project 1
+                Project 1 檢討
               </span>
             </div>
           </a>
         
         
-          <a href="../project2/" title="Project 2" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../others/" title="others" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
               <span class="md-flex__ellipsis">
                 <span class="md-footer-nav__direction">
                   Next
                 </span>
-                Project 2
+                others
               </span>
             </div>
             <div class="md-flex__cell md-flex__cell--shrink">
