@@ -13,6 +13,8 @@ pages:
     - 準備: linux-kernel/prepare.md
     - Project 1: linux-kernel/project-1.md
     - Project 1 檢討: linux-kernel/project-1-check.md
+    - Project 2: linux-kernel/project2.md
+    - others: linux-kernel/others.md
   - modern cpp: 
     - 準備: modern-cpp/prepare.md
     - Usability: modern-cpp/usability.md

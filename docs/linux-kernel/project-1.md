@@ -1,5 +1,5 @@
 
-Add a new system call void linux_survey_TT(char *) to your Linux kernel so that you can call it in your program
+Add a new system call `void linux_survey_TT(char *)` to your Linux kernel so that you can call it in your program
 
 1. The system call has a parameter which specifies the address of a memory area that can store all information the system call collects in the kernel.
 2. The system call records the virtual address intervals consisting of the user address space of the process executing the system call.
@@ -7,9 +7,11 @@ Add a new system call void linux_survey_TT(char *) to your Linux kernel so that 
 
 ---
 
-### 1. 我們要取得呼叫此 system call 的 process 的 virtual address intervals，而我們的目標就是去抓current裡面的mm_struct物件
+### Step 1
+我們要取得呼叫此 system call 的 process 的 virtual address intervals，目標就是去抓 `current` 裡面的 `mm_struct` 物件
 
-#### Linux kernel 中進程用 task_struct 結構體表示 
+#### task_struct
+Linux kernel 中進程用 task_struct 結構體表示 
 進程主要由以下幾部分組成：
 
 * 代碼段：編譯後形成的一些指令
@@ -77,21 +79,20 @@ unsigned long start_code, end_code, start_data, end_data;
 unsigned long start_brk, brk, start_stack;
 unsigned long arg_start, arg_end, env_start, env_end;
 ```
-這些變數存的是process memory layout中個區塊的起始, 結束位址，例如text segments就是start_code ~ end_code
+這些變數存的是 process memory layout 中個區塊的起始, 結束位址，例如 text segments 就是`start_code` ~ `end_code`
 
  
 ```
 struct vm_area_struct * mmap;
 ```
-mmap紀錄進程使用到的VMA們
-其中vm_area_struct中比較重要的資料有
+`mmap` 紀錄進程使用到的 VMA 們其中 `vm_area_struct` 中比較重要的資料有
 ```
 unsigned long vm_start：記錄此 VMA 區塊的開始位址
 unsigned long vm_end：記錄此 VMA 區塊的結束位址
 struct vm_area_struct *vm_next：指向下一個 VMA 區塊結構的指標
 ```
 
-我猜所有VMA的位址就是process的virtual address intervals了吧!
+我猜所有 VMA 的位址就是 process 的 virtual address intervals 了吧
 
 ```
 void my_copy(char *result, unsigned long address, size_t length){
@@ -110,14 +111,14 @@ my_copy(result, state_end, length);
 result += length;
 result += length;
 ```
-這邊在做的事就是把每一個vma的vm_start和vm_end搬到result，搬過去之後再將result往後length(sizeof(unsigned long))個bytes
-由於我是每個兩個address為一組，所以最後state_end我也保留兩個變數的位址
+這邊在做的事就是把每一個 vma 的 `vm_start` 和 `vm_end` 搬到 result，搬過去之後再將 result 往後 `sizeof(unsigned long)` 個 bytes 由於我是每個兩個 address 為一組，所以最後 `state_end` 我也保留兩個變數的位址
 
 ---
 
-### 2. 再來我們要取得corresponding physical address intervals
+### Step 2
+再來我們要取得 corresponding physical address intervals
 
-理解linux paging就很好找了
+理解 linux paging 就很好找了
 
 ```
 #include <linux/kernel.h>
@@ -158,7 +159,7 @@ static unsigned long vaddr2paddr(unsigned long vaddr){
         return paddr;
 }
 ```
-透過pgd_offset, pud_offset, pmd_offset, pte_offset_kernel取得page table，再配合PAGE_MASK取得physical address，其中並不是每個virtual address都有分配到physical address，所以可能在取某級分頁時發生取不到的狀況，此時我們就可以判斷該virtual address沒有被分配到
+透過 `pgd_offset`, `pud_offset`, `pmd_offset`, `pte_offset_kernel` 取得 page table，再配合`PAGE_MASK` 取得 physical address，其中並不是每個 virtual address 都有分配到 physical address，所以可能在取某級分頁時發生取不到的狀況，此時我們就可以判斷此 virtual address 沒有被分配到
 
 ```
 mmap = mm->mmap;
@@ -187,16 +188,16 @@ mmap = mm->mmap;
 	my_copy(result, state_end, length);
 	result += length;
 	result += length;
-        result += length;
-        result += length;
+    result += length;
+    result += length;
 
 ```
-由於virtual address對到physical address是以page為單位，也就是說一塊page的起始位置有對應的physical address則代表整塊page都有，所以我就遞迴過每個vma中的每個page
-這邊我是以每四個資料為一組(page頭尾+frame頭尾)，雖然這麼多result+=length有點醜不過我懶得用其他方法了
+由於 virtual address 對到 physical address 是以page為單位，也就是說一塊 page 的起始位置有對應的physical address 則代表整塊 page 都有，所以我就遞迴過每個 vma 中的每個 page 這邊我是以每四個資料為一組(page頭尾+frame頭尾)，雖然這麼多 result+=length 有點醜不過我懶得用其他方法ㄌ 
 
 ---
 
-### 3. 列出呼叫system call時有多少virtual address有對應的physical address（幾趴）
+### Step 3
+列出呼叫 system call 時有多少 virtual address 有對應的 physical address（幾趴）
 
 我這邊測試端按照剛剛的儲存方式抓出
 
@@ -237,7 +238,7 @@ for(int i=0 ; ; ){
     fprintf(pfile, "0x%lx ~ 0x%lx -> 0x%lx ~ 0x%lx\n", page_start, page_end, frame_start, frame_end);
 }	
 ```
-其中我這邊把result+=length替換成next，還是沒多好看qq
+其中我這邊把 result+=length 替換成 next
 
  3 . 印出
 ```
@@ -246,11 +247,12 @@ printf("%s virtual addresses that have physical memory: %.2f% \n", filename, (do
 
 ---
 
-### 4. 印出哪些virtual address intervals對應到相同的physical address intervals
+### Step 4
+印出哪些virtual address intervals對應到相同的physical address intervals
 
-這裡就有點麻煩了，由於fork()後變成兩個process不能直接把資料存到變數中(child存的parent看不到)，所以必須要再讀檔案來分析，超麻煩啊啊啊啊啊啊啊
+這裡就有點麻煩了，由於 fork() 後變成兩個process不能直接把資料存到變數中(child存的parent看不到)，所以必須要再讀檔案來分析
 
-1. 先宣告一個struct來存我們要的資料
+先宣告一個 struct 來存我們要的資料
 ```
 struct page{
 	unsigned long page_start;
@@ -258,7 +260,7 @@ struct page{
 };
 ```
 
-2. 讀檔後存在陣列中
+讀檔後存在陣列中
 ```
 void analyze_file(char *filename, struct page *pages){
 	FILE *pfile;
@@ -286,7 +288,7 @@ void analyze_file(char *filename, struct page *pages){
 }
 ```
 
-3. 最後再分別拿兩個child的result做比對（我就直接暴搜了）
+最後再分別拿兩個child的result做比對（我就直接暴力了）
 ```
 void calc_phy_relation(struct page *child, struct page *parent, int num){
 	printf("\n\nthe virtual address intervals that map to same physical address at result_%d\n", num);
