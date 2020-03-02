@@ -683,6 +683,34 @@ add1(3); // 4
 
 <p><code>placeholders::_1</code> 意思就是將你後來給的第一個參數傳給 add，如此一來就是 <code>3 + 1</code>，使用的場景就是先寫好一個通用的函式，再透過 <code>bind</code> 組成各個符合需求的函式如 <code>add1(int a)</code></p>
 <h2 id="rvalue-reference">rvalue Reference</h2>
+<p>先看看以下四種定義</p>
+<ol>
+<li><code>lvalue</code>: 在一個表達式執行結束後會持續存在的物件，通常是賦值表達式左側的變數</li>
+<li><code>rvalue</code>: 表達式執行結束後會馬上消失的物件，通常是指等號右側的值</li>
+<li><code>pvalue</code>: <code>pure rvalue</code> 指各種常量和 <code>anonymous temporary object</code></li>
+<li><code>xvalue</code>: <code>expiring value</code> 即將被摧毀但是可以被移動的值</li>
+</ol>
+<p>我們用以下例子來了解 <code>xvalue</code></p>
+<pre><code>std::vector&lt;int&gt; foo() {
+    std::vector&lt;int&gt; temp = {1, 2, 3, 4};
+    return temp;
+}
+
+std::vector&lt;int&gt; v = foo();
+</code></pre>
+
+<p>當 <code>foo()</code> 被呼叫時，它會先建立一個 <code>temp</code> 變數回傳後再複製給 <code>v</code>，最後刪除 <code>temp</code>，如果此時 <code>temp</code> 非常大的話整個過程會非常耗時( <code>v</code> 是 <code>lvalue</code> 而 <code>foo()</code>回傳的值是 <code>pvalue</code> )，在最後一行賦值的過程中，<code>foo()</code>的回傳值是一個暫時值，在這句表達式結束後就會消失，<code>xvalue</code> 定義這種暫時值可以被識別和移動。</p>
+<p>為了取得 <code>xvalue</code>，我們需要透過 <code>rvalue reference</code>:  <code>type &amp;&amp;</code>，這讓 <code>xvalue</code> 的生命得以延續，只要變數還存在<code>xvalue</code>就不會被刪除</p>
+<p><code>std::move</code> 可以將 <code>lvalue</code> 轉為 <code>rvalue</code></p>
+<pre><code>string lv1 = &quot;string,&quot;;
+string &amp;&amp;rv1 = move(lv1);
+cout &lt;&lt; rv1 &lt;&lt; endl; // string,
+
+string &amp;&amp;rv2 = lv1 + lv1;
+rv2 += &quot;string&quot;
+cout &lt;&lt; rv2 &lt;&lt; endl; // string,string,string
+</code></pre>
+
 <p>pending...</p>
                 
                   
